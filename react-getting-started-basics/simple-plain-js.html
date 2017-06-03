@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Basic Demo Page</title>
+	<script type="text/javascript">
+    function yell()
+    {
+    	document.getElementById("textMsg").innerText = 'You fool, I told you not to click me!' ;
+    	document.getElementById("gif").src= 'images/angryo.gif';
+    	document.getElementById("gif").style.display= 'block'
+    }
+    function greet()
+    {
+    	document.getElementById("textMsg").innerText = 'Hurray! ' ;
+    	document.getElementById("gif").src= 'images/hurray.gif';
+    	document.getElementById("gif").style.display= 'block'
+    }
+    function reset()
+    {
+    	document.getElementById("textMsg").innerText = 'Yay!! I\'m so excited ' ;
+    	document.getElementById("gif").style.display= 'none'
+    }
+	</script>
+    
+</head>
+<body>
+    <div style="padding:10px;background-color:#0080a8" >
+	<h1 style="font-family:sans-serif;color:#90A987;"> Welcome </h1>
+    <h3 id="textMsg"> Yay!! I'm so excited </h3>
+	<img id="gif" alt="HTML5 Icon" style="display:none;width:408px;height:408px;">
+	<button type="button" onclick="greet()"> click me </button>
+	<button type="button" onclick="yell()"> don't click me </button>
+	<button type="button" onclick="reset()"> obliviate! </button>
+</div>
+</body>
+</html>
