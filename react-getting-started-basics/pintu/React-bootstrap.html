@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Let's Learn react reposnive layout </title>
+
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.31.0/react-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.31.0/react-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
+
+    <style>
+   #container { padding: 50px;    }
+   #container p { font-family:sans-serif;color:#90A987; }
+   </style>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
+
+</head>
+<body>
+<div id="alertDisplay" style="padding:10px;background-color:#0080a8" ></div>
+<div id="container" style="padding:10px;background-color:#ffffff"></div>
+  <script type="text/babel">
+    
+
+
+var Grid = ReactBootstrap.Grid;
+var Row = ReactBootstrap.Row;
+var Col = ReactBootstrap.Col;
+
+var AlertDismissable = React.createClass({
+  getInitialState() {
+    return {
+      alertVisible: true
+    };
+  },
+
+  render: function() {
+    if (this.state.alertVisible) {
+    var Alert = ReactBootstrap.Alert;
+    var Button = ReactBootstrap.Button;
+      return (
+        <Alert bsStyle="danger" onDismiss={this.handleAlertDismiss}>
+          <h4>Oh snap! You got an error!</h4>
+          <p>
+            <Button bsStyle="danger">Take this action</Button>
+            <span> or </span>
+            <Button onClick={this.handleAlertDismiss}>Hide Alert</Button>
+          </p>
+        </Alert>
+      );
+    }
+    return (
+        <div > </div>
+    );
+  },
+
+  handleAlertDismiss() {
+    this.setState({alertVisible: false});
+  },
+
+  handleAlertShow() {
+    this.setState({alertVisible: true});
+  }
+});
+
+var SubmitBtn = React.createClass({
+  getInitialState: function() {
+      return { value : '' }; 
+      },
+
+     handleChange: function (event) {
+      this.setState({value: event.target.value});
+    },
+
+    handleSubmit: function (event) {
+      ReactDOM.render( <AlertDismissable /> ,document.querySelector("#alertDisplay") );
+      event.preventDefault();
+    },
+
+    render: function() {
+      return (
+        <div>
+        <p> Hello, Enter Some Value </p>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+            <input type="text" value={this.state.value} onChange={this.handleChange.bind(this)} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        </div>
+      );
+    }
+});
+
+const gridInstance = (
+  <Grid>
+    <Row className="show-grid">
+    <Col xs={12} md={8}>I am trying out grid system</Col>
+    <Col xs={6} md={4} style= {{backgroundColor:"#0000ff"}}> 2nd Column</Col>
+    </Row>
+
+    <Row className="show-grid">
+    <Col xs={6} md={4}><SubmitBtn /></Col>
+    </Row>
+  </Grid>
+);
+
+ReactDOM.render(
+  gridInstance ,
+  document.querySelector("#container")
+);
+</script>
+</body>
+</html>
